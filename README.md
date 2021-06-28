@@ -1,4 +1,4 @@
-# tut-kubernetes
+# Kubernetes Tutorial
 
 ## Configuration
 
@@ -79,4 +79,35 @@ Use an imperative command - tell kubectl to update the deployment
 kubectl set image <object_typ>/<object_name> <container_name>=<new image to use>
 kubectl set image deployment/client-deployment client=alaena/tut-multi-client:v0.1
 
+```
+
+## Kubernetes Volumes
+
+- Volume - tied to a pod only, when pod dies the data is lost
+- Persistent Volume - exists outside of a pod, when pod dies data will persist, until dev delete it
+- Persistent Volume Claim - advertisement of options of volumes in your config
+  - Statically Provisioned Persistent Volume - created ahead of time
+  - Dynamically Provisioned Persistent Volume - created on the fly, only created when pod asked for it
+
+### Access Modes
+
+- ReadWriteOnce - can be used by a single node
+- ReadOnlyMany - multiple nodes can read from this
+- ReadWriteMany - Can be read and written to by many nodes
+
+### Storage Classes (File System)
+
+Usually just use the default settings, it will automatically adjust to defaults of the cloud provider.
+
+Some [options](https://kubernetes.io/docs/concepts/storage/storage-classes/):
+
+- Google Cloud Persistent Disk
+- Azure File
+- Azure Disk
+- AWS Block Store
+- Local
+
+```shell
+kubectl get storageclass
+kubectl describe storageclass
 ```
