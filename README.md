@@ -8,6 +8,8 @@ Change the current configuration of cluster
 kubectl apply -f client-pod.yml
 kubectl apply -f client-node-port.yml
 kubectl apply -f client-deployment.yml
+kubectl apply -f k8s/client-deployment.yml
+kubectl apply -f k8s # apply all config file in a folder
 ```
 
 Print the status of all running objects (pods, services)
@@ -33,6 +35,11 @@ Remove an object
 ```shell
 kubectl delete -f client-pod.yml
 kubectl delete -f client-node-port.yml
+kubectl delete -f client-deployment.yml
+
+kubectl delete <kind> <object_name>
+kubectl delete deployment client-deployment
+kubectl delete service client-node-port
 ```
 
 ## Minikube (not used when using Docker Desktop)
