@@ -19,6 +19,8 @@ kubectl get pods
 kubectl get pods -o wide
 kubectl get services
 kubectl get deployments
+kubect get pv # persistent volume
+kubectl get pvc # get claims (advertisement)
 kubectl describe pod client-pod
 kubectl describe pod client-deployment-6695c9c676-q4knp
 ```
