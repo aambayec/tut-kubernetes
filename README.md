@@ -21,6 +21,7 @@ kubectl get services
 kubectl get deployments
 kubect get pv # persistent volume
 kubectl get pvc # get claims (advertisement)
+kubectl get secrets
 kubectl describe pod client-pod
 kubectl describe pod client-deployment-6695c9c676-q4knp
 ```
@@ -81,6 +82,29 @@ Use an imperative command - tell kubectl to update the deployment
 kubectl set image <object_typ>/<object_name> <container_name>=<new image to use>
 kubectl set image deployment/client-deployment client=alaena/tut-multi-client:v0.1
 
+```
+
+## Kubernetes Objects
+
+- Pods - a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers
+- Deployments - administers and manages a set of pods
+- Services - sets up networking in a Kubernetes Cluster
+  - ClusterIP - exposes a set of pods to other objects in the cluster
+  - NodePort - exposes a set of pods to the outside world (only good for dev purposes)
+  - LoadBalancer -
+  - Ingress -
+- Secrets - Securely stores a piece of information in the cluster, such as a database password, API keys, or any secrets
+  _Secret Types_:
+  - docker-registry - authentication with some type of custom authentication with docker registry where we store our images in (no need when using docker hub)
+  - tls - https setup (tls keys)
+  - generic
+
+Imperative command to create secret:
+
+```shell
+# --from-literal or from a file
+kubectl create secret generic <secret_name> --from-literal key=<value>
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=Ulyanin123
 ```
 
 ## Kubernetes Volumes

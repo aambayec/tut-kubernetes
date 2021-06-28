@@ -25,3 +25,9 @@ spec:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data # data directory inside the storage
               subPath: postgres # any data inside the container that is stored inside of mountPath is going to be stored inside of a folder `postgres` - specific to postgres due to issues
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
