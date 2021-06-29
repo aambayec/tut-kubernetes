@@ -148,3 +148,47 @@ Some [options](https://kubernetes.io/docs/concepts/storage/storage-classes/):
 kubectl get storageclass
 kubectl describe storageclass
 ```
+
+## Kubernetes dashboard
+
+### Minikube
+
+### Docker Desktop
+
+1. Grab the most current script from the [install instructions](https://github.com/kubernetes/dashboard#install)
+   eg:
+
+   ```shell
+   # Mac or using GitBash
+   curl https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml > kubernetes-dashboard.yaml
+
+   # PowerShell
+   Invoke-RestMethod -Uri https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml -Outfile kubernetes-dashboard.yaml
+   ```
+
+2. Open up the downloaded file in your code editor and use CMD+F or CTL+F to find the args. Add the following two lines underneath --auto-generate-certificates:
+
+   ```yml
+   args:
+     - --auto-generate-certificates
+     - --enable-skip-login
+     - --disable-settings-authorizer
+   ```
+
+3. Run the following command inside the directory where you downloaded the dashboard manifest file a few steps ago:
+
+   ```shell
+   kubectl apply -f kubernetes-dashboard.yaml
+   ```
+
+4. Start the server by running the following command:
+
+   ```shell
+   kubectl proxy
+   ```
+
+5. You can now access the dashboard by visiting:
+
+   <http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+
+6. You will be presented with a login screen. Click the "SKIP" link next to the SIGN IN button.
