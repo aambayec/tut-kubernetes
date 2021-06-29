@@ -153,6 +153,10 @@ kubectl describe storageclass
 
 ### Minikube
 
+```shell
+minikube dashboard
+```
+
 ### Docker Desktop
 
 1. Grab the most current script from the [install instructions](https://github.com/kubernetes/dashboard#install)
