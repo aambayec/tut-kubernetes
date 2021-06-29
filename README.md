@@ -1,5 +1,13 @@
 # Kubernetes Tutorial
 
+Kubernetes setup with:
+
+- Google Cloud
+- Redis
+- Postgres
+- React
+- Nodejs
+
 ## Configuration
 
 Change the current configuration of cluster
@@ -22,6 +30,7 @@ kubectl get deployments
 kubect get pv # persistent volume
 kubectl get pvc # get claims (advertisement)
 kubectl get secrets
+kubectl get ingress
 kubectl describe pod client-pod
 kubectl describe pod client-deployment-6695c9c676-q4knp
 ```
@@ -87,12 +96,14 @@ kubectl set image deployment/client-deployment client=alaena/tut-multi-client:v0
 ## Kubernetes Objects
 
 - Pods - a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers
-- Deployments - administers and manages a set of pods
+- Deployments - administers and manages a set of pods. Deployment is a type of 'controller'.
 - Services - sets up networking in a Kubernetes Cluster
   - ClusterIP - exposes a set of pods to other objects in the cluster
   - NodePort - exposes a set of pods to the outside world (only good for dev purposes)
-  - LoadBalancer -
-  - Ingress -
+  - LoadBalancer - legacy way of getting network traffic into a cluster
+  - Ingress - exposes a set of services to outside world
+    - [ingress-nginx](https://github.com/kubernetes/ingress-nginx) - a community led project by kubernetes, setup of ingress-nginx changes depending on your environment (local, GC, AWS, Azure). Learn [more](https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html).
+    - [kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress) - a project led by the company nginx
 - Secrets - Securely stores a piece of information in the cluster, such as a database password, API keys, or any secrets
   _Secret Types_:
   - docker-registry - authentication with some type of custom authentication with docker registry where we store our images in (no need when using docker hub)
