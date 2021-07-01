@@ -1,12 +1,15 @@
 # Kubernetes Tutorial
 
-Kubernetes setup with:
+Setup with:
 
 - Google Cloud
 - Redis
 - Postgres
 - React
 - Nodejs
+- Docker
+- Kubernetes
+- Helm V3
 
 ## To Run
 
@@ -207,10 +210,10 @@ minikube dashboard
 
 ## Installing Travis CLI to encrypt GCloud JSON service account
 
-Use docker when using Windows
-
 ```shell
+# Use docker when using Windows, Ruby is preinstalled in Mac/Linux
 docker run -it -v $(pwd):/app ruby:2.4 sh
+
 gem install travis
 
 travis login --github-token YOUR_PERSONAL_TOKEN --com
@@ -227,8 +230,46 @@ travis encrypt-file gcloud-service-account.json -r aambayec/tut-kubernetes --com
 #    openssl aes-256-cbc -K $encrypted_227a26790598_key -iv $encrypted_227a26790598_iv -in gcloud-service-account.json.enc -out gcloud-service-account.json -d
 ```
 
-Ruby is preinstalled in Mac/Linux
+## Helm V3
 
-```
+Helm is essentially a program that we can use to administer 3rd party software inside of a Kubernetes cluster.
 
-```
+1. Install Helm v3:
+   In your Google Cloud Console run the following:
+
+   ```shell
+   curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+   chmod 700 get_helm.sh
+   ./get_helm.sh
+   ```
+
+   link to the docs:kv
+
+   <https://helm.sh/docs/intro/install/#from-script>
+
+2. Skip the commands run in the following lectures:
+
+   ~~Helm Setup, Kubernetes Security with RBAC, Assigning Tiller a Service Account, and Ingress-Nginx with Helm. You should still watch these lectures and they contain otherwise useful info.~~
+
+3. Install Ingress-Nginx:
+
+   In your Google Cloud Console run the following:
+
+   ```shell
+   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   helm install my-release ingress-nginx/ingress-nginx
+   ```
+
+   IMPORTANT: If you get an error such as chart requires kubeVersion: >=1.16.0-0.....
+
+   You may need to manually upgrade your cluster to at least the version specified:
+
+   gcloud container clusters upgrade YOUR_CLUSTER_NAME --master --cluster-version 1.16
+
+   This should not be a long term issue since Google Cloud should handle this automatically:
+
+   <https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster>
+
+   Link to the docs:
+
+   <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>
