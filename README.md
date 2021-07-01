@@ -8,6 +8,14 @@ Kubernetes setup with:
 - React
 - Nodejs
 
+## To Run
+
+```shell
+kubectl apply -f k8s
+```
+
+Then open browser localhost:80
+
 ## Configuration
 
 Change the current configuration of cluster
