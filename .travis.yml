@@ -28,4 +28,4 @@ deploy:
   provider: script # create custom provider
   script: bash ./deploy.sh
   on:
-    branch: master
+    branch: main
