@@ -204,3 +204,31 @@ minikube dashboard
    <http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
 
 6. You will be presented with a login screen. Click the "SKIP" link next to the SIGN IN button.
+
+## Installing Travis CLI to encrypt GCloud JSON service account
+
+Use docker when using Windows
+
+```shell
+docker run -it -v $(pwd):/app ruby:2.4 sh
+gem install travis
+
+travis login --github-token YOUR_PERSONAL_TOKEN --com
+or travis login --github-token YOUR_PERSONAL_TOKEN --pro
+
+# Manually copy json file into the 'volumed' directory so we can use it in the container eg. gcloud-service-account.json
+# then...
+
+travis encrypt-file gcloud-service-account.json -r aambayec/tut-kubernetes --com
+# or travis encrypt-file service-account.json -r USERNAME/REPO --pro
+
+# SAMPLE OUTPUT
+# Please add the following to your build script (before_install stage in your .travis.yml, for instance):
+#    openssl aes-256-cbc -K $encrypted_227a26790598_key -iv $encrypted_227a26790598_iv -in gcloud-service-account.json.enc -out gcloud-service-account.json -d
+```
+
+Ruby is preinstalled in Mac/Linux
+
+```
+
+```
