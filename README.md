@@ -10,6 +10,7 @@ Setup with:
 - Docker
 - Kubernetes
 - Helm V3
+- LetsEncrypt - for TLS certificate
 
 ## To Run
 
@@ -273,3 +274,44 @@ Helm is essentially a program that we can use to administer 3rd party software i
    Link to the docs:
 
    <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>
+
+## Use Let's Encrypt in Google Cloud
+
+Must have a domain name.
+Then follow this <https://www.siteyaar.com/connect-godaddy-domain-to-google-cloud> to make your domain use google cloud.
+
+### Installing the Cert Manager using Helm on Google Cloud
+
+1. Create the namespace for cert-manager:
+
+   ```shell
+   kubectl create namespace cert-manager
+   ```
+
+2. Add the Jetstack Helm repository
+
+   ```shell
+   helm repo add jetstack https://charts.jetstack.io
+   ```
+
+3. Update your local Helm chart repository cache:
+
+   ```shell
+   helm repo update
+   ```
+
+4. Install the cert-manager Helm chart:
+
+   ```shell
+   helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.2.0 --create-namespace
+   ```
+
+5. Install the CRDs:
+
+   ```shell
+   kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.crds.yaml
+   ```
+
+Official docs for reference:
+
+<https://cert-manager.io/docs/installation/kubernetes/#installing-with-helm>
