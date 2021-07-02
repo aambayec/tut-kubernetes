@@ -1,4 +1,5 @@
 FROM node:14.14.0-alpine
+ENV CI=true
 
 # set user as 'node'
 # The end result will be that all files and directories in the project will no longer be owned by root and will instead be owned by the node user.

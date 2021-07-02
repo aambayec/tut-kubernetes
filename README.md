@@ -10,12 +10,19 @@ Setup with:
 - Docker
 - Kubernetes
 - Helm V3
-- LetsEncrypt - for TLS certificate
+- LetsEncrypt - for TLS certificate, using [cert-manager](https://github.com/jetstack/cert-manager)
+- [Skaffold](https://skaffold.dev/docs/) - for local development with Kubernetes
 
 ## To Run
 
 ```shell
 kubectl apply -f k8s
+```
+
+Using Skaffold for automatic code reload in development
+
+```shell
+skaffold dev
 ```
 
 Then open browser localhost:80
