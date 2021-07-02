@@ -1,19 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: server-deployment
+  name: server-cluster-ip-service
 spec:
-  replicas: 3
+  type: ClusterIP
   selector:
-    matchLabels:
-      component: server
-  template:
-    metadata:
-      labels:
-        component: server
-    spec:
-      containers:
-        - name: server
-          image: alaena/tut-multi-server
-          ports:
-            - containerPort: 5000
+    component: server
+  ports:
+    - port: 5000
+      targetPort: 5000

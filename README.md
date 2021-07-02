@@ -2,15 +2,18 @@
 
 Setup with:
 
+- Kubernetes
+- Docker
+- Travis CI
 - Google Cloud
+- AWS
 - Redis
 - Postgres
 - React
 - Nodejs
-- Docker
-- Kubernetes
 - Helm V3
-- LetsEncrypt - for TLS certificate
+- LetsEncrypt - for TLS certificate, using [cert-manager](https://github.com/jetstack/cert-manager)
+- [Skaffold](https://skaffold.dev/docs/) - for local development with Kubernetes
 
 ## To Run
 
